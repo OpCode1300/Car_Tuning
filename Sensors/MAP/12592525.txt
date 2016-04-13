@@ -1,0 +1,6 @@
+Source: 2012 CTS-V Stock Cal
+Bar: 3 BAR
+PN#: 12592525
+
+{B2101} MAP Sensor Scaler	312.500000	scaler
+{B2103} MAP Sensor Offset	-11.250000	kPa

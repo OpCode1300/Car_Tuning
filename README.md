@@ -1,1 +1,1 @@
-# E38_Tuning
+# E38_Tuning files for EFILive and HP Tuners

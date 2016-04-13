@@ -1,0 +1,6 @@
+Source: 2010 Camaro LS3 Stock Cal
+Bar: 1 BAR
+PN#: 12591290
+
+{B2101} MAP Sensor Scaler	128.125000	scaler
+{B2103} MAP Sensor Offset	-0.312500	kPa

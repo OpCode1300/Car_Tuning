@@ -1,0 +1,213 @@
+;  _______________________________________________________________________
+; |                                                                       |
+; |                         Copyright © 1999-2011                         |
+; |                            EFILive Limited                            |
+; |                      web: http://www.efilive.com                      |
+; |                        email: info@efilive.com                        |
+; |_______________________________________________________________________|
+;
+;            *************************************************
+;            *                                               *
+;            *   THIS FILE IS CREATED AUTOMATICALLY BY THE   *
+;            *   EFILive VERSION 8 SCAN AND TUNE SOFTWARE.   *
+;            *                                               *
+;            *   ONLY EXPERIENCED USERS SHOULD ATTEMPT TO    *
+;            *          MODIFY THIS FILE MANUALLY.           *
+;            *                                               *
+;            *************************************************
+;
+
+;Tune Menu List
+;--------------
+;
+; Caption:     is the "on-screen" display option from which the user may select.
+;              - FlashScan will display the caption on a single line, replacing
+;                the | with a space.
+;              - AutoCal will display the caption on two lines, replacing
+;                the | with a newline.
+; Active:      is Y or N. Entries marked with N will not be displayed.
+; Module:      lists the module name.
+;
+; Only 32 menu options can be populated in this section.
+;
+*TUNE_SELECTIONS
+;
+;Caption           Active Module
+;----------------- ------ ------
+E38|,              Y,     E38
+
+; _________________________________________________________________________
+;
+;PID Menu List
+;-------------
+;
+; Caption:     is the "on-screen" display option from which the user may select.
+;              - FlashScan will display the caption on a single line, replacing
+;                the | with a space.
+;              - AutoCal will display the caption on two lines, replacing
+;                the | with a newline.
+; Active:      is Y or N. Entries marked with N will not be displayed.
+; Modules:     lists 1 or 2 "&" seperated module names.
+; Hot Key:     is a number between 1 and 4 (inclusive) that indicates the
+;              Ctrl+function key
+;              that can be used to "quick select" the PID selection.
+; DashBoard:   is the name of the V7 dashboard file that should be loaded
+;              by default when displaying BBL files created with this option.
+;
+; Only 32 menu options can be populated in this section.
+;
+*PID_SELECTIONS
+;
+;Caption           Active Modules (Engine&Trans)     Hot Key  Dashboard
+;----------------- ------ -------------------------- -------- --------------------------
+E38|,              Y,     E38,                       1,       "E38 ECM Metric.vdb"
+
+; _________________________________________________________________________
+;
+; PID Selection Lists
+; -------------------
+;
+; *Section_Name is the *PSL_XX where XX matches the entry number (between 01 and 32 inclusive)
+;               in the *PID_SELECTIONS section
+;
+; Source: For OBDII PIDs, is one of:
+;           PCM = Powertrain control modules, engine and trans combined into one module.
+;           ECM = Dedicated engine control modules only.
+;           TCM = Dedicated transmission control modules only.
+;         For External PIDs, is "EXT"
+;         For Calculated PIDs, is prefixed with "&"
+;
+;         If you are unsure whether to use ECM or PCM, use PCM. PCM will match both ECM and PCM.
+;         The Node specifies from which module the PID will be retrieved.
+;         i.e. ECM.RPM v's TCM.RPM.
+;
+; PID:    Is the PID name
+;
+; Custom: Is 7 ":" separated fields:
+;           enabled: If set to Y, then custom units may be displayed for this PID.
+;           cap:     Upto 11 characters of user defined display name.
+;           units:   Upto 11 characters of user defined units name.
+;           prec:    number of decimal places to display.
+;           fact:    Factor multiplied to the default Metric value to calculate the Custom value.
+;           offs:    Offset added to the default Metric value to calculate the Custom value.
+;           inv:     If set to Y, the default Metric value is inverted before applying the Factor and Offset.
+;
+; Alarm:  Is 7 ":" separated fields:
+;           min:     Minimum value, below which the alarm will sound.
+;           enabled: If set to Y, the minimum alarm is enabled.
+;           max:     Maximum value, above which the alarm will sound.
+;           enabled: If set to Y, the maximum alarm is enabled.
+;           style:   Is one of:
+;                       0 = No sound, No LEDs
+;                       1 = Low pitch
+;                       2 = Medium Pitch
+;                       3 = High Pitch
+;                       4 = Very high Pitch
+;                       8 = Illuminate LED 1
+;                      16 = Illuminate LED 2
+;                      32 = Illuminate LED 3
+;                      64 = Illuminate LED 4
+;                     128 = Illuminate LED 5
+;                    Add Pitch and LED values together to enable audio and visual alarms.
+;                    For example, for Medium Pitch and LED 4, use 2+64 = 66
+;           time:    Time (in 10ms increments) for which alarm will be sounded.
+;           hold:    Time (in seconds) for which the displayed value will be frozen (not implemented yet).
+;
+
+; _________________________________________________________________________
+; (E38|)
+*PSL_01
+;
+;Node PID        Custom (Cap:Units:Prec:Fact:Offs:Inv)             Alarm (min:max:style:time*10ms:hold*sec)
+;---- ---------- ------------------------------------------------- -----------------------------------------
+ECM.AFRATIO_M,   N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.MAP,         N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.MAF,         N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.LONGFT1,     N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.LONGFT2,     N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.SHRTFT1,     N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.SHRTFT2,     N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.RPM,         N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.SPARKADV,    N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.ENGLOAD,     N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.IAT,         N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+ECM.KR,          N:::0:1:0:N,                                      0:N:0:N:0:10:0                                              
+
+; _________________________________________________________________________
+*SW_DSP5
+;
+;Switchable tune list for Duramax Diesels
+;----------------------------------------
+;
+;Description (not more than 16 characters)
+;--------------------------------------------------------------------------
+Tune #1
+Tune #2
+Tune #3
+Tune #4
+Tune #5
+
+; _________________________________________________________________________
+*SW_CSP5
+;
+;Switchable tune list for Cummins Diesels
+;----------------------------------------
+;
+;Description (not more than 16 characters)
+;--------------------------------------------------------------------------
+Tune #1
+Tune #2
+Tune #3
+Tune #4
+Tune #5
+
+; _________________________________________________________________________
+*SW_DSP4
+;
+;Switchable tune list for E98 Diesels
+;----------------------------------------
+;
+;Description (not more than 16 characters)
+;--------------------------------------------------------------------------
+Tune #1
+Tune #2
+Tune #3
+Tune #4
+
+; _________________________________________________________________________
+; System:      is one of
+;              - XX_P: GM Powertrain
+;              - XX_C: GM Chassis
+;              - XX_B: GM Body
+;              - XX_U: GM Network
+;                where XX is any of:
+;                - GM:  General Motors
+;                - CHR: Chrysler
+; Active:      is Y or N. Descriptions for DTCs in systems marked with N
+;              will not be available.
+;
+;              By marking one of more DTC systems as not available you
+;              can save space in the [Config] file system.
+;              Space used by the various DTC description files are approximately:
+;
+;              General Motors:
+;                - Powertrain: (gm_p.dtc) 160Kb
+;                - Chassis:    (gm_c.dtc)  49Kb
+;                - Body:       (gm_b.dtc) 257Kb
+;                - Network:    (gm_u.dtc)  22Kb
+;
+;              Chrysler:
+;                - Powertrain: (ch_p.dtc)  11Kb
+;                - Chassis:    (ch_c.dtc)   N/A
+;                - Body:       (ch_b.dtc)   N/A
+;                - Network:    (ch_u.dtc)   1Kb
+*DTC
+;
+;System Active
+;------ ------
+GM_P,      Y
+GM_B,      Y
+GM_C,      Y
+GM_U,      Y
+CHR_P,      N
+CHR_U,      N

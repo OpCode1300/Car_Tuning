@@ -1,0 +1,6 @@
+[Script]
+;ID    Cal   Adj            Value Update Area              Source Area              Comments
+;----- ----- --- ---------------- ------------------------ ------------------------ ------------------------------
+   10= B2101 SET     "312.500000" .                        .                        MAP Sensor Scaler
+   20= B2103 SET     "-11.250000" .                        .                        MAP Sensor Offset
+

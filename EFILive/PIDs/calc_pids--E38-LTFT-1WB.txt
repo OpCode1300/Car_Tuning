@@ -1,0 +1,113 @@
+# ==============================================================================
+# File details
+# ------------
+#
+# This section defines various details about the file format.
+
+*FILE
+
+#Parameter  Value            Description
+#---------- ---------------- ---------------------------------------------------
+VERSION     7.1.1            File version
+DECSEP      .                Decimal separator used in this file
+
+
+# calc_pids--E38-LTFT-1WB
+# ==============================================================================
+# Units
+# -------------------
+# See sae_generic.txt for more information on the *UNITS section
+
+*UNITS
+
+#Code     System     Abbr     Description
+#-------- ---------- -------- -------------------------------------------------------------
+None      None       ""       "No units"
+K         Metric     "K"      "Degrees Kelvin"
+R         Imperial   "R"      "Degrees Rankine"
+
+# ==============================================================================
+# Add slot definitions here
+# --------------------------------
+# See sae_generic.txt for more information on "SLOT" formats
+#
+#Units             Low          High      Fmt  Expression
+#------------ ------------- ------------- ---- --------------------------------------------------------------
+
+*CLC-00-011
+%                  0.0         100.0       .1  "{GM.INJPWB1}*{SAE.RPM}/1200"
+
+*CLC-00-012
+%                  0.0         100.0       .1  "{GM.INJPWB2}*{SAE.RPM}/1200"
+
+*CLC-00-050
+None               0             4         .0  "{SAE.LAMBDA}=1"
+
+*CLC-00-110
+factor             0.5           1.5       .4  "{EXT.WO2LAM1}/{SAE.LAMBDA}"
+
+*CLC-00-120
+factor             0.5           1.5       .4  "({SAE.LONGFT1}+{SAE.LONGFT2})/200+1"
+
+*CLC-00-160
+factor             0.5           1.5       .4  "iff({CALC.TRIMMING},{CALC.LTFTBEN},{CALC.WO2BEN})"
+
+*CLC-00-273
+C                  0.0         100.0       .1  "{SAE.IAT.C}"
+F                 40.0         220.0       .1  "{SAE.IAT.F}"
+K                280.0         380.0       .1  "{CALC.DAT.C}+273.15"
+R                500.0         680.0       .1  "{CALC.DAT.F}+459.67"
+
+*CLC-00-290
+VE                 0.0           4.0       .4  "{E38.SCALEDUNVE_DMA}/1000"
+
+*CLC-00-300
+VE                 0.0           2.468     .4  "{SAE.MAF.gps}*{CALC.DAT.K}/{SAE.MAP.kPa}/{SAE.RPM}*15"
+
+*CLC-00-302
+VE                 0.0           2.468     .4  "{CALC.SELBEN}*{CALC.VEN.VE}"
+
+*CLC-00-310
+gps                0.0         400.0       .1  "{CALC.SVE.VE}/{CALC.DAT.K}*{SAE.MAP.kPa}*{SAE.RPM}/15"
+
+*CLC-00-312
+gps                0.0         400.0       .1  "{CALC.SELBEN}*{CALC.MAFN.gps}"
+
+*CLC-00-430
+VE                 0.0           4.0       .4  "{E38.APCYL_DMA}*{CALC.DAT.K}/{SAE.MAP.kPa}"
+
+*CLC-00-440
+gcyl               0.0           1.0       .4  "{CALC.SVE.VE}/{CALC.DAT.K}*{SAE.MAP.kPa}"
+
+# ==============================================================================
+*PRN - Parameter Reference Numbers
+# --------------------------------
+# See sae_generic.txt for more information on the *PRN section
+#
+#Code                      PRN  SLOT         Units            System           Description
+#------------------------- ---- ------------ ---------------- ---------------- ------------------------------------------
+
+CALC.INJDCB1               F011 CLC-00-011   %                Tuning           "Injector Duty Cycle Bank 1"
+CALC.INJDCB2               F012 CLC-00-012   %                Tuning           "Injector Duty Cycle Bank 2"
+
+CALC.TRIMMING              F050 CLC-00-050   None             Tuning           "Trimming Indicator (based on commanded stoich)"
+
+CALC.WO2BEN                F110 CLC-00-110   factor           Tuning           "BEN from WB"
+CALC.LTFTBEN               F120 CLC-00-120   factor           Tuning           "BEN from LTFT"
+CALC.SELBEN                F160 CLC-00-160   factor           Tuning           "BEN selected from WB or LTFT"
+
+CALC.DAT                   F273 CLC-00-273   "C,F,K,R"        Tuning           "Dynamic Air Temperature"
+
+CALC.SVE                   F290 CLC-00-290   VE               Tuning           "Scaled VE (from VE Coefficients)"
+
+CALC.VEN                   F300 CLC-00-300   VE               Tuning           "Calculated VE (from MAF)"
+CALC.VET                   F302 CLC-00-302   VE               Tuning           "Calculated VE (from MAF), Corrected by BEN"
+
+CALC.MAFN                  F310 CLC-00-310   gps              Tuning           "Calculated MAF (from VE)"
+CALC.MAFT                  F312 CLC-00-312   gps              Tuning           "Calculated MAF (from VE), Corrected by BEN"
+
+CALC.VEDCA                 F430 CLC-00-430   VE               Tuning           "Calculated VE (from DCA)"
+CALC.DCAVE                 F440 CLC-00-440   gcyl             Tuning           "Calculated DCA (from VE)"
+
+
+

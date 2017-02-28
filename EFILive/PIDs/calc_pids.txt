@@ -25,7 +25,7 @@ DECSEP      .                Decimal separator used in this file
 None      None       ""       "No units"
 K         Metric     "K"      "Degrees Kelvin"
 R         Imperial   "R"      "Degrees Rankine"
-L         None       "L"      "Lamda"
+L         None       "lambda" "Lambda"
 
 # ==============================================================================
 # Add slot definitions here
@@ -36,10 +36,9 @@ L         None       "L"      "Lamda"
 #------------ ------------- ------------- ---- --------------------------------------------------------------
 
 *CLC-00-001
-V                  0.0         5.0         0.4 "{EXT.AD1}"
 AFR                10.00       16.8        0.4 "{EXT.AD1}*1.36 + 10"
 # E10 Stoich
-L                  0.0         1.0         0.4 "({EXT.AD1}*1.36 + 10)/14.13"
+lambda             0.0         1.0         0.4 "({EXT.AD1}*1.36 + 10)/14.13"
 
 *CLC-00-011
 %                  0.0         100.0       .1  "{GM.INJPWB1}*{SAE.RPM}/1200"
@@ -51,7 +50,7 @@ L                  0.0         1.0         0.4 "({EXT.AD1}*1.36 + 10)/14.13"
 None               0             4         .0  "{SAE.LAMBDA}=1"
 
 *CLC-00-110
-factor             0.5           1.5       .4  "{CALC.WBV.L}/{SAE.LAMBDA}"
+factor             0.5           1.5       .4  "iff({EXT.AD1},{CALC.EXT_AD1_WBO2.lambda},{EXT.WO2LAM1})/{SAE.LAMBDA}"
 
 *CLC-00-120
 factor             0.5           1.5       .4  "({SAE.LONGFT1}+{SAE.LONGFT2})/200+1"
@@ -93,7 +92,7 @@ gcyl               0.0           1.0       .4  "{CALC.SVE.VE}/{CALC.DAT.K}*{SAE.
 #
 #Code                      PRN  SLOT         Units            System           Description
 #------------------------- ---- ------------ ---------------- ---------------- ------------------------------------------
-CALC.WBV                   F010 CLC-00-001   "AFR,V,L"        Custom           "Wideband O2 Voltage"
+CALC.EXT_AD1_WBO2          F001 CLC-00-001   "AFR,lambda"     Custom           "Analog WBO2"
 CALC.INJDCB1               F011 CLC-00-011   %                Tuning           "Injector Duty Cycle Bank 1"
 CALC.INJDCB2               F012 CLC-00-012   %                Tuning           "Injector Duty Cycle Bank 2"
 
